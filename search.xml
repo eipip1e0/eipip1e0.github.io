@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>Hello World</title>
+    <url>/2022/04/29/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>test</title>
+    <url>/2022/04/29/test/</url>
+    <content><![CDATA[<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">显示msg中的内容</span></span><br><span class="line">rosmsg show &quot;具体的内容&quot;</span><br><span class="line"></span><br><span class="line">rosbag play xxx -r 0.5 --clock</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">查看bag包的简略信息</span></span><br><span class="line">rosbag info</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看bag包内容</span></span><br><span class="line">rqt_bag</span><br><span class="line">rqt</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">拆分bag包</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment"># 按话题拆分单个</span></span></span><br><span class="line">rosbag filter input.bag only-tf.bag &quot;topic == &#x27;/tf&#x27;&quot;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment"># 按话题拆分多个</span></span></span><br><span class="line">rosbag filter input.bag output.bag &quot;topic == &#x27;/velodyne_point_cloud&#x27; or topic ==&#x27;/visensor/imu&#x27; or topic == &#x27;/visensor/left/image_raw&#x27;&quot;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment"># 根据时间拆分</span></span></span><br><span class="line">rosbag filter qingxie.bag circle_qingxie.bag &quot;t.to_sec() &gt;=1642173895 and t.to_sec() &lt;=1642174089&quot;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment"># 同时过滤多个话题与时间</span></span></span><br><span class="line">rosbag filter input.bag output.bag &quot;(topic == &#x27;/chinook/ouster/points&#x27; or topic ==&#x27;/visensor/imu&#x27; or topic == &#x27;/visensor/left/image_raw&#x27;) and (t.to_sec() &gt;= 1566248111.46 and t.to_sec() &lt;= 1566248161.46)&quot;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看节点关系图</span></span><br><span class="line">rqt_graph</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">bag包修复</span></span><br><span class="line">rosbag reindex xxx.bag.active</span><br><span class="line">rosbag fix xxx.bag.active result.bag</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">指定bag提取pcd</span></span><br><span class="line">rosrun pcl_ros bag_to_pcd tunnel5.bag /robot/dlo/map_node/map pcd</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="rviz-为话题提供正确的fixed-frame"><a href="#rviz-为话题提供正确的fixed-frame" class="headerlink" title="rviz 为话题提供正确的fixed frame"></a>rviz 为话题提供正确的fixed frame</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">rostopic echo /velodyne/points | grep frame_id</span><br></pre></td></tr></table></figure>
+
+<p>然后在rviz中填写对应的fixed frame</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># This message holds the description of one point entry in the</span><br><span class="line"># PointCloud2 message format.</span><br><span class="line">uint8 INT8    = 1</span><br><span class="line">uint8 UINT8   = 2</span><br><span class="line">uint8 INT16   = 3</span><br><span class="line">uint8 UINT16  = 4</span><br><span class="line">uint8 INT32   = 5</span><br><span class="line">uint8 UINT32  = 6</span><br><span class="line">uint8 FLOAT32 = 7</span><br><span class="line">uint8 FLOAT64 = 8</span><br><span class="line"> </span><br><span class="line">string name      # Name of field</span><br><span class="line">uint32 offset    # Offset from start of point struct</span><br><span class="line">uint8  datatype  # Datatype enumeration, see above</span><br><span class="line">uint32 count     # How many elements in the field</span><br></pre></td></tr></table></figure>
+
+<p>grep 多显示几行  grep -a7</p>
+<p>7为行数</p>
+]]></content>
+      <tags>
+        <tag>ROS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>github博客搭建</title>
+    <url>/2022/04/29/github%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</url>
+    <content><![CDATA[<h1 id="相关命令"><a href="#相关命令" class="headerlink" title="相关命令"></a>相关命令</h1><p>安装时将安装包写入package.json</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install --save xxx</span><br></pre></td></tr></table></figure>
+<h1 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h1>]]></content>
+      <tags>
+        <tag>blog</tag>
+      </tags>
+  </entry>
+</search>
