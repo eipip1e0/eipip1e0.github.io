@@ -1,6 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>为Hexo博客添加moc3格式的live2d</title>
+    <url>/2022/05/02/Hexo%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0moc3%E6%A0%BC%E5%BC%8F%E7%9A%84live2d/</url>
+    <content><![CDATA[<h1 id="使用到的项目"><a href="#使用到的项目" class="headerlink" title="使用到的项目"></a>使用到的项目</h1><h2 id="live2dDemo"><a href="#live2dDemo" class="headerlink" title="live2dDemo"></a>live2dDemo</h2><ul>
+<li><p>项目地址：<a href="https://github.com/RedWolf-369/live2dDemo">live2dDemo</a></p>
+</li>
+<li><p>简介：基于live2d官方示例进行的修改</p>
+</li>
+<li><p>相关教程连接：</p>
+<ul>
+<li><a href="https://blog.csdn.net/qq_37735413/article/details/104769280">Live2D(WebSDK 4.X)网页看板娘设置（一）仰望星空的sun的博客-CSDN博客live2d 网页</a></li>
+<li><a href="https://blog.csdn.net/qq_37735413/article/details/119413744">live2d（Web SDK 4.x）Web看板娘进阶仰望星空的sun的博客-CSDN博客web看板娘</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="Hexo主题——Next"><a href="#Hexo主题——Next" class="headerlink" title="Hexo主题——Next"></a>Hexo主题——Next</h2><p>其他主题应该也能用类似方法修改</p>
+<h1 id="教程"><a href="#教程" class="headerlink" title="教程"></a>教程</h1><h2 id="下载并运行demo"><a href="#下载并运行demo" class="headerlink" title="下载并运行demo"></a>下载并运行demo</h2><ul>
+<li><p>下载<a href="https://github.com/RedWolf-369/live2dDemo/releases">live2dDemo</a>中v2.0版littlDemo，并解压</p>
+</li>
+<li><p>可能用到的软件与插件（这个调试页面比较方便，也可以用其他方式）：</p>
+<ul>
+<li>VS Code</li>
+<li>Live Server插件：可以方便的为静态或动态页面启动一个本地开发服务，能实现修改代码后，页面的实时重新加载。</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>使用VS Code打开项目，右键index.html，以Live Server打开。即可看见demo中的模型加载出来。无法加载的就自己调试调试。</li>
+</ul>
+<h2 id="添加自己的moc3模型"><a href="#添加自己的moc3模型" class="headerlink" title="添加自己的moc3模型"></a>添加自己的moc3模型</h2><ul>
+<li>将模型放入littleDemo&#x2F;live2d&#x2F;models中，注意模型中的xxx.moc3.json的文件名需要与文件夹名称对应，并添加mapper.json文件，填入以下内容。</li>
+</ul>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line"><span class="section">## 这个参数需要你使用官方工具打开获取，parameter中对象的key不可修改，value根据你模型的情况对应修改即可.https://www.live2d.com/download/cubism-viewer-for-unity/ 下载查看模型。选择Look Settings即可查看相关parameter</span></span><br><span class="line"><span class="code">    &quot;parameter&quot;: [</span></span><br><span class="line"><span class="code">        &#123;</span></span><br><span class="line"><span class="code">            &quot;ParamAngleX&quot;: &quot;PARAM_ANGLE_X&quot;</span></span><br><span class="line"><span class="code">        &#125;,</span></span><br><span class="line"><span class="code">        &#123;</span></span><br><span class="line"><span class="code">            &quot;ParamAngleY&quot;: &quot;PARAM_ANGLE_Y&quot;</span></span><br><span class="line"><span class="code">        &#125;,</span></span><br><span class="line"><span class="code">        &#123;</span></span><br><span class="line"><span class="code">            &quot;ParamAngleZ&quot;: &quot;PARAM_ANGLE_Z&quot;</span></span><br><span class="line"><span class="code">        &#125;,</span></span><br><span class="line"><span class="code">        &#123;</span></span><br><span class="line"><span class="code">            &quot;ParamEyeBallX&quot;: &quot;PARAM_EYE_BALL_X&quot;</span></span><br><span class="line"><span class="code">        &#125;,</span></span><br><span class="line"><span class="code">        &#123;</span></span><br><span class="line"><span class="code">            &quot;ParamBodyAngleX&quot;: &quot;PARAM_BODY_ANGLE_X&quot;</span></span><br><span class="line"><span class="code">        &#125;,</span></span><br><span class="line"><span class="code">        &#123;</span></span><br><span class="line"><span class="code">            &quot;ParamEyeBallY&quot;: &quot;PARAM_EYE_BALL_Y&quot;</span></span><br><span class="line"><span class="code">        &#125;</span></span><br><span class="line"><span class="code">    ],</span></span><br><span class="line"><span class="code">## 暂时不可用，等待后续更新。</span></span><br><span class="line"><span class="code">    &quot;url&quot;: [</span></span><br><span class="line"><span class="code">        &#123;</span></span><br><span class="line"><span class="code">            &quot;motions/Mgirl10_tingge.motion3.json&quot;: &quot;motions/Mgirl10_tingge.motion3.json&quot;</span></span><br><span class="line"><span class="code">        &#125;,</span></span><br><span class="line"><span class="code">        &#123;</span></span><br><span class="line"><span class="code">            &quot;l2d01.u.moc3&quot;: &quot;l2d01.u.moc3&quot;</span></span><br><span class="line"><span class="code">        &#125;,</span></span><br><span class="line"><span class="code">        &#123;</span></span><br><span class="line"><span class="code">            &quot;textures/texture_00.png&quot;: &quot;textures/texture_00.png&quot;</span></span><br><span class="line"><span class="code">        &#125;</span></span><br><span class="line"><span class="code">    ],</span></span><br><span class="line"><span class="code">## 修改模型的中心点位置，大于0即可，合适范围为[0,16]，一般取值[0,8]</span></span><br><span class="line"><span class="code">    &quot;center&quot;:[2,1],</span></span><br><span class="line"><span class="code">##模型的放大倍率，默认为1，修改后center属性设置[1，1]代表模型居中</span></span><br><span class="line"><span class="code">		&quot;model_scale&quot;:2</span></span><br><span class="line"><span class="code">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>对index.html中的如下部分进行修改</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- canvas的宽与高影响着模型渲染的精细度 --&gt;</span></span><br><span class="line">...</span><br><span class="line"><span class="tag">&lt;<span class="name">canvas</span> <span class="attr">id</span>=<span class="string">&quot;live2d&quot;</span> <span class="attr">width</span>=<span class="string">&quot;1400&quot;</span> <span class="attr">height</span>=<span class="string">&quot;1250&quot;</span> <span class="attr">class</span>=<span class="string">&quot;live2d&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">canvas</span>&gt;</span></span><br><span class="line">...</span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript">	</span></span><br><span class="line"><span class="language-javascript">	<span class="comment">//此处添加模型文件夹名，例如:</span></span></span><br><span class="line"><span class="language-javascript">       <span class="keyword">let</span> modelNames = [<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;lafei_4&#x27;</span>]</span></span><br><span class="line"><span class="language-javascript">&lt;/scripts&gt;</span></span><br><span class="line"><span class="language-javascript">...</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>在live2d&#x2F;assets&#x2F;waifu.css中添加</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"> <span class="comment">/* 这里的宽高比例要和上一步index.html中设置的宽高比例对应，不然模型会出现拉伸现象 */</span></span><br><span class="line"><span class="selector-tag">canvas</span> &#123;</span><br><span class="line">    <span class="attribute">width</span> : <span class="number">280px</span>;</span><br><span class="line">    <span class="attribute">height</span> : <span class="number">250px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>对meidou_live2d.js进行如下修改</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//由于某些从游戏中提取出来的motion中的TotalSegmentCount字段与TotalPointCount字段的值会存在问题</span></span><br><span class="line"><span class="comment">//故，查找：</span></span><br><span class="line">(<span class="string">&quot;TotalSegmentCount&quot;</span>).<span class="title function_">toInt</span>()</span><br><span class="line"><span class="comment">//替换为：</span></span><br><span class="line">(<span class="string">&quot;TotalSegmentCount&quot;</span>).<span class="title function_">toInt</span>()*<span class="number">2</span></span><br><span class="line"><span class="comment">//查找</span></span><br><span class="line">(<span class="string">&quot;TotalPointCount&quot;</span>).<span class="title function_">toInt</span>()</span><br><span class="line"><span class="comment">//替换为：</span></span><br><span class="line">(<span class="string">&quot;TotalPointCount&quot;</span>).<span class="title function_">toInt</span>()*<span class="number">2</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>调试运行修改后的littleDemo，没问题后进行下一步</li>
+</ul>
+<h2 id="将littleDemo融入hexo-next主题中"><a href="#将littleDemo融入hexo-next主题中" class="headerlink" title="将littleDemo融入hexo-next主题中"></a>将littleDemo融入hexo-next主题中</h2><ul>
+<li>先复制整个littleDemo项目至<code>博客根目录/source</code>中</li>
+<li>打开<code>themes/next/layout/_layout.njk</code>文件并根据之前修改的index.html中的数据进行如下修改：</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="comment">&lt;!-- head标签中添加 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span> <span class="attr">href</span>=<span class="string">&quot;/littleDemo/live2d/assets/waifu.css&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"><span class="comment">&lt;!-- body标签中添加 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;waifu&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;waifu-tips&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">canvas</span> <span class="attr">id</span>=<span class="string">&quot;live2d&quot;</span> <span class="attr">width</span>=<span class="string">&quot;1400&quot;</span> <span class="attr">height</span>=<span class="string">&quot;1250&quot;</span> <span class="attr">class</span>=<span class="string">&quot;live2d&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">canvas</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;waifu-tool&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;fui-home&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;fui-chat&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;fui-eye&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;fui-user&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;fui-photo&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;fui-info-circle&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;fui-cross&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- Live2DCubismCore script --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;/littleDemo/live2dcubismcore.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- Build script --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span> = <span class="string">&quot;/littleDemo/meidou_live2d.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;/littleDemo/live2d/assets/waifu-tips.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">//必选参数</span></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">let</span> modulesPath = <span class="string">&quot;/littleDemo/live2d/models/&quot;</span></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">let</span> modelNames = [<span class="string">&#x27;lafei_4&#x27;</span>,<span class="string">&#x27;live2d_colcher_s1&#x27;</span>,<span class="string">&#x27;a&#x27;</span>]  <span class="comment">//注意，这里的名字是存放你模型文件的主目录的名字，目录中的moc3.json文件的名字一定要与目录同名</span></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">//可选参数,这是点击人物时的提示语句</span></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">let</span> waifuTipsUrl = <span class="string">&quot;/littleDemo/live2d/assets/waifu-tips.json&quot;</span></span></span><br><span class="line"><span class="language-javascript">    <span class="title function_">initModel</span>(modulesPath,modelNames,waifuTipsUrl);</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>注意自己各文件的引用路径，<code>/</code>在hexo博客的主题模板中，代表<code>博客根目录/source</code>目录</p>
+</li>
+<li><p>教程完毕！</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>live2d</tag>
+        <tag>hexo</tag>
+        <tag>next</tag>
+        <tag>blog</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>ROS常用命令</title>
     <url>/2022/04/29/ROS%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
     <content><![CDATA[<h1 id="ROS文件系统导览"><a href="#ROS文件系统导览" class="headerlink" title="ROS文件系统导览"></a>ROS文件系统导览</h1><h2 id="rospack命令"><a href="#rospack命令" class="headerlink" title="rospack命令"></a>rospack命令</h2><ul>
@@ -76,78 +150,22 @@
       </tags>
   </entry>
   <entry>
-    <title>为Hexo博客添加moc3格式的live2d</title>
-    <url>/2022/05/02/Hexo%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0moc3%E6%A0%BC%E5%BC%8F%E7%9A%84live2d/</url>
-    <content><![CDATA[<h1 id="使用到的项目"><a href="#使用到的项目" class="headerlink" title="使用到的项目"></a>使用到的项目</h1><h2 id="live2dDemo"><a href="#live2dDemo" class="headerlink" title="live2dDemo"></a>live2dDemo</h2><ul>
-<li><p>项目地址：<a href="https://github.com/RedWolf-369/live2dDemo">live2dDemo</a></p>
-</li>
-<li><p>简介：基于live2d官方示例进行的修改</p>
-</li>
-<li><p>相关教程连接：</p>
-<ul>
-<li><a href="https://blog.csdn.net/qq_37735413/article/details/104769280">Live2D(WebSDK 4.X)网页看板娘设置（一）仰望星空的sun的博客-CSDN博客live2d 网页</a></li>
-<li><a href="https://blog.csdn.net/qq_37735413/article/details/119413744">live2d（Web SDK 4.x）Web看板娘进阶仰望星空的sun的博客-CSDN博客web看板娘</a></li>
-</ul>
-</li>
-</ul>
-<h2 id="Hexo主题——Next"><a href="#Hexo主题——Next" class="headerlink" title="Hexo主题——Next"></a>Hexo主题——Next</h2><p>其他主题应该也能用类似方法修改</p>
-<h1 id="教程"><a href="#教程" class="headerlink" title="教程"></a>教程</h1><h2 id="下载并运行demo"><a href="#下载并运行demo" class="headerlink" title="下载并运行demo"></a>下载并运行demo</h2><ul>
-<li><p>下载<a href="https://github.com/RedWolf-369/live2dDemo/releases">live2dDemo</a>中v2.0版littlDemo，并解压</p>
-</li>
-<li><p>可能用到的软件与插件（这个调试页面比较方便，也可以用其他方式）：</p>
-<ul>
-<li>VS Code</li>
-<li>Live Server插件：可以方便的为静态或动态页面启动一个本地开发服务，能实现修改代码后，页面的实时重新加载。</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li>使用VS Code打开项目，右键index.html，以Live Server打开。即可看见demo中的模型加载出来。无法加载的就自己调试调试。</li>
-</ul>
-<h2 id="添加自己的moc3模型"><a href="#添加自己的moc3模型" class="headerlink" title="添加自己的moc3模型"></a>添加自己的moc3模型</h2><ul>
-<li>将模型放入littleDemo&#x2F;live2d&#x2F;models中，注意模型中的xxx.moc3.json的文件名需要与文件夹名称对应，并添加mapper.json文件，填入以下内容。</li>
-</ul>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line"><span class="section">## 这个参数需要你使用官方工具打开获取，parameter中对象的key不可修改，value根据你模型的情况对应修改即可.https://www.live2d.com/download/cubism-viewer-for-unity/ 下载查看模型。选择Look Settings即可查看相关parameter</span></span><br><span class="line"><span class="code">    &quot;parameter&quot;: [</span></span><br><span class="line"><span class="code">        &#123;</span></span><br><span class="line"><span class="code">            &quot;ParamAngleX&quot;: &quot;PARAM_ANGLE_X&quot;</span></span><br><span class="line"><span class="code">        &#125;,</span></span><br><span class="line"><span class="code">        &#123;</span></span><br><span class="line"><span class="code">            &quot;ParamAngleY&quot;: &quot;PARAM_ANGLE_Y&quot;</span></span><br><span class="line"><span class="code">        &#125;,</span></span><br><span class="line"><span class="code">        &#123;</span></span><br><span class="line"><span class="code">            &quot;ParamAngleZ&quot;: &quot;PARAM_ANGLE_Z&quot;</span></span><br><span class="line"><span class="code">        &#125;,</span></span><br><span class="line"><span class="code">        &#123;</span></span><br><span class="line"><span class="code">            &quot;ParamEyeBallX&quot;: &quot;PARAM_EYE_BALL_X&quot;</span></span><br><span class="line"><span class="code">        &#125;,</span></span><br><span class="line"><span class="code">        &#123;</span></span><br><span class="line"><span class="code">            &quot;ParamBodyAngleX&quot;: &quot;PARAM_BODY_ANGLE_X&quot;</span></span><br><span class="line"><span class="code">        &#125;,</span></span><br><span class="line"><span class="code">        &#123;</span></span><br><span class="line"><span class="code">            &quot;ParamEyeBallY&quot;: &quot;PARAM_EYE_BALL_Y&quot;</span></span><br><span class="line"><span class="code">        &#125;</span></span><br><span class="line"><span class="code">    ],</span></span><br><span class="line"><span class="code">## 暂时不可用，等待后续更新。</span></span><br><span class="line"><span class="code">    &quot;url&quot;: [</span></span><br><span class="line"><span class="code">        &#123;</span></span><br><span class="line"><span class="code">            &quot;motions/Mgirl10_tingge.motion3.json&quot;: &quot;motions/Mgirl10_tingge.motion3.json&quot;</span></span><br><span class="line"><span class="code">        &#125;,</span></span><br><span class="line"><span class="code">        &#123;</span></span><br><span class="line"><span class="code">            &quot;l2d01.u.moc3&quot;: &quot;l2d01.u.moc3&quot;</span></span><br><span class="line"><span class="code">        &#125;,</span></span><br><span class="line"><span class="code">        &#123;</span></span><br><span class="line"><span class="code">            &quot;textures/texture_00.png&quot;: &quot;textures/texture_00.png&quot;</span></span><br><span class="line"><span class="code">        &#125;</span></span><br><span class="line"><span class="code">    ],</span></span><br><span class="line"><span class="code">## 修改模型的中心点位置，大于0即可，合适范围为[0,16]，一般取值[0,8]</span></span><br><span class="line"><span class="code">    &quot;center&quot;:[2,1],</span></span><br><span class="line"><span class="code">##模型的放大倍率，默认为1，修改后center属性设置[1，1]代表模型居中</span></span><br><span class="line"><span class="code">		&quot;model_scale&quot;:2</span></span><br><span class="line"><span class="code">&#125;</span></span><br></pre></td></tr></table></figure>
+    <title>Hello World</title>
+    <url>/2022/04/29/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
 
-<ul>
-<li>对index.html中的如下部分进行修改</li>
-</ul>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- canvas的宽与高影响着模型渲染的精细度 --&gt;</span></span><br><span class="line">...</span><br><span class="line"><span class="tag">&lt;<span class="name">canvas</span> <span class="attr">id</span>=<span class="string">&quot;live2d&quot;</span> <span class="attr">width</span>=<span class="string">&quot;1400&quot;</span> <span class="attr">height</span>=<span class="string">&quot;1250&quot;</span> <span class="attr">class</span>=<span class="string">&quot;live2d&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">canvas</span>&gt;</span></span><br><span class="line">...</span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript">	</span></span><br><span class="line"><span class="language-javascript">	<span class="comment">//此处添加模型文件夹名，例如:</span></span></span><br><span class="line"><span class="language-javascript">       <span class="keyword">let</span> modelNames = [<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;lafei_4&#x27;</span>]</span></span><br><span class="line"><span class="language-javascript">&lt;/scripts&gt;</span></span><br><span class="line"><span class="language-javascript">...</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
 
-<ul>
-<li>在live2d&#x2F;assets&#x2F;waifu.css中添加</li>
-</ul>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"> <span class="comment">/* 这里的宽高比例要和上一步index.html中设置的宽高比例对应，不然模型会出现拉伸现象 */</span></span><br><span class="line"><span class="selector-tag">canvas</span> &#123;</span><br><span class="line">    <span class="attribute">width</span> : <span class="number">280px</span>;</span><br><span class="line">    <span class="attribute">height</span> : <span class="number">250px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
 
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
 
-
-<ul>
-<li>对meidou_live2d.js进行如下修改</li>
-</ul>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//由于某些从游戏中提取出来的motion中的TotalSegmentCount字段与TotalPointCount字段的值会存在问题</span></span><br><span class="line"><span class="comment">//故，查找：</span></span><br><span class="line">(<span class="string">&quot;TotalSegmentCount&quot;</span>).<span class="title function_">toInt</span>()</span><br><span class="line"><span class="comment">//替换为：</span></span><br><span class="line">(<span class="string">&quot;TotalSegmentCount&quot;</span>).<span class="title function_">toInt</span>()*<span class="number">2</span></span><br><span class="line"><span class="comment">//查找</span></span><br><span class="line">(<span class="string">&quot;TotalPointCount&quot;</span>).<span class="title function_">toInt</span>()</span><br><span class="line"><span class="comment">//替换为：</span></span><br><span class="line">(<span class="string">&quot;TotalPointCount&quot;</span>).<span class="title function_">toInt</span>()*<span class="number">2</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>调试运行修改后的littleDemo，没问题后进行下一步</li>
-</ul>
-<h2 id="将littleDemo融入hexo-next主题中"><a href="#将littleDemo融入hexo-next主题中" class="headerlink" title="将littleDemo融入hexo-next主题中"></a>将littleDemo融入hexo-next主题中</h2><ul>
-<li>先复制整个littleDemo项目至<code>博客根目录/source</code>中</li>
-<li>打开<code>themes/next/layout/_layout.njk</code>文件并根据之前修改的index.html中的数据进行如下修改：</li>
-</ul>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="comment">&lt;!-- head标签中添加 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span> <span class="attr">href</span>=<span class="string">&quot;/littleDemo/live2d/assets/waifu.css&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"><span class="comment">&lt;!-- body标签中添加 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;waifu&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;waifu-tips&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">canvas</span> <span class="attr">id</span>=<span class="string">&quot;live2d&quot;</span> <span class="attr">width</span>=<span class="string">&quot;1400&quot;</span> <span class="attr">height</span>=<span class="string">&quot;1250&quot;</span> <span class="attr">class</span>=<span class="string">&quot;live2d&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">canvas</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;waifu-tool&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;fui-home&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;fui-chat&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;fui-eye&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;fui-user&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;fui-photo&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;fui-info-circle&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;fui-cross&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- Live2DCubismCore script --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;/littleDemo/live2dcubismcore.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- Build script --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span> = <span class="string">&quot;/littleDemo/meidou_live2d.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;/littleDemo/live2d/assets/waifu-tips.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">//必选参数</span></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">let</span> modulesPath = <span class="string">&quot;/littleDemo/live2d/models/&quot;</span></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">let</span> modelNames = [<span class="string">&#x27;lafei_4&#x27;</span>,<span class="string">&#x27;live2d_colcher_s1&#x27;</span>,<span class="string">&#x27;a&#x27;</span>]  <span class="comment">//注意，这里的名字是存放你模型文件的主目录的名字，目录中的moc3.json文件的名字一定要与目录同名</span></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">//可选参数,这是点击人物时的提示语句</span></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">let</span> waifuTipsUrl = <span class="string">&quot;/littleDemo/live2d/assets/waifu-tips.json&quot;</span></span></span><br><span class="line"><span class="language-javascript">    <span class="title function_">initModel</span>(modulesPath,modelNames,waifuTipsUrl);</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>注意自己各文件的引用路径，<code>/</code>在hexo博客的主题模板中，代表<code>博客根目录/source</code>目录</p>
-</li>
-<li><p>教程完毕！</p>
-</li>
-</ul>
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 ]]></content>
-      <tags>
-        <tag>live2d</tag>
-        <tag>hexo</tag>
-        <tag>next</tag>
-        <tag>blog</tag>
-      </tags>
   </entry>
   <entry>
     <title>使用Hexo+GitHub搭建个人博客</title>
@@ -313,24 +331,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Hello World</title>
-    <url>/2022/04/29/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
     <title>记一次AOSP源码编译（AOSP on WSL2 &amp; WSLG）</title>
     <url>/2022/07/06/%E8%AE%B0%E4%B8%80%E6%AC%A1AOSP%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91%EF%BC%88AOSP%20on%20WSL2%20&amp;%20WSLG%EF%BC%89/</url>
     <content><![CDATA[<h1 id="编译环境"><a href="#编译环境" class="headerlink" title="编译环境"></a>编译环境</h1><p>Windows 11（Windows 10 目前请不要尝试，Windows 10目前不支持WSLG）</p>
@@ -412,8 +412,7 @@
 <h3 id="This-user-doesn’t-have-permissions-to-use-KVM"><a href="#This-user-doesn’t-have-permissions-to-use-KVM" class="headerlink" title="This user doesn’t have permissions to use KVM"></a>This user doesn’t have permissions to use KVM</h3><blockquote>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">&gt;sudo <span class="built_in">chown</span> <span class="variable">$USER</span> -R /dev/kvm</span><br><span class="line">&gt;<span class="comment"># 或者直接执行以下命令暴力解决</span></span><br><span class="line">&gt;sudo <span class="built_in">chmod</span> -R 777 /dev/kvm</span><br></pre></td></tr></table></figure>
 </blockquote>
-<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><p>[^1]: <a href="https://source.android.com/source/downloading.html">下载源代码  | Android 开源项目  | Android Open Source Project</a><br>[^2]: <a href="https://mirrors.ustc.edu.cn/help/aosp.html">AOSP 镜像使用帮助 — USTC Mirror Help 文档</a><br>[^3]: <a href="https://source.android.google.cn/setup/create/avd">使用 Android 模拟器虚拟设备  | Android 开源项目  | Android Open Source Project (google.cn)</a></p>
-<p>[^4]: <a href="https://stackoverflow.com/questions/60468693/java-outofmemoryerror-when-building-aosp-10">android source - Java OutOfMemoryError when building AOSP 10 - Stack Overflow</a></p>
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><p>[^1]: <a href="https://source.android.com/source/downloading.html">下载源代码  | Android 开源项目  | Android Open Source Project</a><br>[^2]: <a href="https://mirrors.ustc.edu.cn/help/aosp.html">AOSP 镜像使用帮助 — USTC Mirror Help 文档</a><br>[^3]: <a href="https://source.android.google.cn/setup/create/avd">使用 Android 模拟器虚拟设备  | Android 开源项目  | Android Open Source Project (google.cn)</a><br>[^4]: <a href="https://stackoverflow.com/questions/60468693/java-outofmemoryerror-when-building-aosp-10">android source - Java OutOfMemoryError when building AOSP 10 - Stack Overflow</a></p>
 ]]></content>
       <tags>
         <tag>AOSP</tag>
