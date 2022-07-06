@@ -75,6 +75,24 @@
       </tags>
   </entry>
   <entry>
+    <title>Hello World</title>
+    <url>/2022/04/29/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
     <title>ROS常用命令</title>
     <url>/2022/04/29/ROS%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
     <content><![CDATA[<h1 id="ROS文件系统导览"><a href="#ROS文件系统导览" class="headerlink" title="ROS文件系统导览"></a>ROS文件系统导览</h1><h2 id="rospack命令"><a href="#rospack命令" class="headerlink" title="rospack命令"></a>rospack命令</h2><ul>
@@ -313,21 +331,93 @@
       </tags>
   </entry>
   <entry>
-    <title>Hello World</title>
-    <url>/2022/04/29/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+    <title>记一次AOSP源码编译（AOSP on WSL2 &amp; WSLG）</title>
+    <url>/2022/07/06/%E8%AE%B0%E4%B8%80%E6%AC%A1AOSP%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91%EF%BC%88AOSP%20on%20WSL2%20&amp;%20WSLG%EF%BC%89/</url>
+    <content><![CDATA[<h1 id="编译环境"><a href="#编译环境" class="headerlink" title="编译环境"></a>编译环境</h1><p>Windows 11（Windows 10 目前请不要尝试，Windows 10目前不支持WSLG）</p>
+<p>Ubuntu18.04 on WSL2&amp;WSLG</p>
+<h1 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h1><h2 id="启用代理"><a href="#启用代理" class="headerlink" title="启用代理"></a>启用代理</h2><p>在repo源码的时候，即使使用镜像网站下载源码，也会存在访问外网的情况。由于本次编译在WSL2中编译，故直接使用Windows下开启的Clash代理即可，具体步骤如下：</p>
+<ul>
+<li><p>配置Clash，打开Allow LAN功能</p>
+</li>
+<li><p>在Windows中为WSL添加防火墙白名单，使用PowerShell运行</p>
+</li>
+</ul>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">New-NetFirewallRule</span> <span class="literal">-DisplayName</span> “WSL” <span class="literal">-Direction</span> Inbound <span class="literal">-InterfaceAlias</span> “vEthernet (WSL)” <span class="literal">-Action</span> Allow</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<ul>
+<li>在WSL中，为<code>~/.bashrc</code>文件末尾追加如下代码。</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 这里的ip配置为/etc/resolv.conf文件中的nameserver，WSL可以用过此ip与Windows通信,7890是Clash代理端口</span></span><br><span class="line"><span class="built_in">export</span> http_proxy=http://$(grep -m 1 nameserver /etc/resolv.conf | awk <span class="string">&#x27;&#123;print $2&#125;&#x27;</span>):7890/</span><br><span class="line"><span class="built_in">export</span> https_proxy=http://$(grep -m 1 nameserver /etc/resolv.conf | awk <span class="string">&#x27;&#123;print $2&#125;&#x27;</span>):7890/</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<h2 id="使用Repo-Clone代码-1-2"><a href="#使用Repo-Clone代码-1-2" class="headerlink" title="使用Repo Clone代码[^1][^2]"></a>使用Repo Clone代码[^1][^2]</h2><h3 id="安装-Repo"><a href="#安装-Repo" class="headerlink" title="安装 Repo"></a>安装 Repo</h3><p><strong><font color="red">!!!请不用使用apt-get或者apt安装repo，容易发生python版本相关Bug</font></strong></p>
+<p><strong><font color="red">!!!请不用使用apt-get或者apt安装repo，容易发生python版本相关Bug</font></strong></p>
+<p><strong><font color="red">!!!请不用使用apt-get或者apt安装repo，容易发生python版本相关Bug</font></strong></p>
+<p>Repo 是一款工具，可让您在 Android 环境中更轻松地使用 Git。要详细了解 Repo，请参阅<a href="https://source.android.com/source/developing">开发</a>部分。</p>
+<p>要安装 Repo，请执行以下操作：</p>
+<ul>
+<li>确保主目录下有一个 bin&#x2F; 目录，并且该目录包含在路径中：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir ~/bin</span><br><span class="line">PATH=~/bin:$PATH</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<ul>
+<li>下载 Repo 工具，并确保它可执行：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">curl https://storage.googleapis.com/git-repo-downloads/repo &gt; ~/bin/repo</span><br><span class="line">chmod a+x ~/bin/repo</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<p>对于 1.21 版，Repo 的 SHA-1 校验和为 b8bd1804f432ecf1bab730949c82b93b0fc5fede</p>
+<p>对于 1.22 版，Repo 的 SHA-1 校验和为 da0514e484f74648a890c0467d61ca415379f791</p>
+<p>对于 1.23 版，Repo 的 SHA-256 校验和为 e147f0392686c40cfd7d5e6f332c6ee74c4eab4d24e2694b3b0a0c037bf51dc5</p>
+<h3 id="初始化-Repo-客户端"><a href="#初始化-Repo-客户端" class="headerlink" title="初始化 Repo 客户端"></a>初始化 Repo 客户端</h3><p>安装 Repo 后，设置您的客户端以访问 Android 源代码代码库：</p>
+<ul>
+<li>创建一个空目录来存放您的工作文件。如果您使用的是 MacOS，必须在区分大小写的文件系统中创建该目录。为其指定一个您喜欢的任意名称：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> WORKING_DIRECTORY</span><br><span class="line"><span class="built_in">cd</span> WORKING_DIRECTORY</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>使用您的真实姓名和电子邮件地址配置 Git。要使用 Gerrit 代码审核工具，您需要一个与<a href="https://www.google.com/accounts">已注册的 Google 帐号</a>关联的电子邮件地址。确保这是您可以接收邮件的有效地址。您在此处提供的姓名将显示在您提交的代码的提供方信息中。</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global user.name <span class="string">&quot;Your Name&quot;</span></span><br><span class="line">git config --global user.email <span class="string">&quot;you@example.com&quot;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>运行 <code>repo init</code> 以获取最新版本的 Repo 及其最近的所有错误更正内容。您必须为清单指定一个网址，该网址用于指定 Android 源代码中包含的各个代码库将位于工作目录中的什么位置。</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">repo init -u https://android.googlesource.com/platform/manifest <span class="comment"># 先看下一个步骤</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>要对“master”以外的分支进行校验，请使用 <code>-b</code> 来指定相应分支。要查看分支列表，请直接访问<a href="https://android.googlesource.com/platform/manifest">仓库地址</a>进行查看</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 本文克隆android-12.1.0_r5</span></span><br><span class="line">repo init -u https://android.googlesource.com/platform/manifest -b android-12.1.0_r5</span><br></pre></td></tr></table></figure>
+
+<p>初始化成功后，系统将显示一条消息，告诉您 Repo 已在工作目录中完成初始化。客户端目录中现在应包含一个 <code>.repo</code> 目录，清单等文件将保存在该目录下。</p>
+<h3 id="下载-Android-源代码树"><a href="#下载-Android-源代码树" class="headerlink" title="下载 Android 源代码树"></a>下载 Android 源代码树</h3><p>要将 Android 源代码树从默认清单中指定的代码库下载到工作目录，请运行以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 根据情况采用不同的线程数</span></span><br><span class="line">repo <span class="built_in">sync</span> -j32</span><br></pre></td></tr></table></figure>
+
+<p>Android 源代码文件将位于工作目录中对应的项目名称下。初始同步操作将需要 1 个小时或更长时间才能完成。要详细了解 <code>repo sync</code> 和其他 Repo 命令，请参阅<a href="https://source.android.com/source/developing">开发</a>部分。</p>
+<h2 id="编译源码-3"><a href="#编译源码-3" class="headerlink" title="编译源码[^3]"></a>编译源码[^3]</h2><h4 id="编译命令"><a href="#编译命令" class="headerlink" title="编译命令"></a>编译命令</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> WORKING_DIRECTORY</span><br><span class="line"><span class="built_in">source</span> build/envsetup.sh</span><br><span class="line">lunch sdk_phone_x86_64 <span class="comment"># 选择平台等编译选项,由于没有pixel设备，故编译64位模拟器</span></span><br><span class="line">make -j16 <span class="comment"># -j16,量力而为</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="运行模拟器"><a href="#运行模拟器" class="headerlink" title="运行模拟器"></a>运行模拟器</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 注意，每次执行emulator命令需要保证终端执行过source build/envsetup.sh和lunch sdk_phone_x86_64，此外source ~/.bashrc之后也需要重新执行上面两个命令</span></span><br><span class="line">emulator</span><br></pre></td></tr></table></figure>
+
+<h2 id="错误解决"><a href="#错误解决" class="headerlink" title="错误解决"></a>错误解决</h2><h3 id="OOM"><a href="#OOM" class="headerlink" title="OOM"></a>OOM</h3><blockquote>
+<p>分配给WSL的内存不足时，在编译到<code>out/soong/.intermediates/frameworks/base/api-stubs-docs/android_common/out</code>时必定出现OOM，网上的解决方法间参考文献[^4]</p>
+<p>然而，这种方法笔者没能成功解决问题。</p>
+<p>于是本文给出一种简单且暴力的方法，但是不适用于物理内存过小的用户，方法如下</p>
+<p>Windows环境下，修改<code>C:\Users\用户名\.wslconfig</code>文件内容，暴力增加WSL的内存</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">&gt;[wsl2]</span><br><span class="line">&gt;memory=16G <span class="comment"># 限制最大使用内存，此处建议使用16G</span></span><br><span class="line">&gt;swap=16G <span class="comment"># 限制最大使用虚拟内存，swap不会对编译产生影响，故此处设置请随意</span></span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="Can’t-access-ANDROID-PRODUCT-OUT-as"><a href="#Can’t-access-ANDROID-PRODUCT-OUT-as" class="headerlink" title="Can’t access ANDROID_PRODUCT_OUT as"></a>Can’t access ANDROID_PRODUCT_OUT as</h3><blockquote>
+<p>在<code>~/.bashrc</code>文件中加入</p>
+<p><code>export ANDROID_PRODUCT_OUT=~/WORKING_DIRECTORY/out/target/product/generic</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">&gt;<span class="built_in">source</span> ~/.bashrc <span class="comment"># 修改后需要执行此命令使其生效</span></span><br><span class="line">&gt;lunch sdk_phone_x86_64 <span class="comment"># source之后，需要重新lunch</span></span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="This-user-doesn’t-have-permissions-to-use-KVM"><a href="#This-user-doesn’t-have-permissions-to-use-KVM" class="headerlink" title="This user doesn’t have permissions to use KVM"></a>This user doesn’t have permissions to use KVM</h3><blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">&gt;sudo <span class="built_in">chown</span> <span class="variable">$USER</span> -R /dev/kvm</span><br><span class="line">&gt;<span class="comment"># 或者直接执行以下命令暴力解决</span></span><br><span class="line">&gt;sudo <span class="built_in">chmod</span> -R 777 /dev/kvm</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><p>[^1]: <a href="https://source.android.com/source/downloading.html">下载源代码  | Android 开源项目  | Android Open Source Project</a><br>[^2]: <a href="https://mirrors.ustc.edu.cn/help/aosp.html">AOSP 镜像使用帮助 — USTC Mirror Help 文档</a><br>[^3]: <a href="https://source.android.google.cn/setup/create/avd">使用 Android 模拟器虚拟设备  | Android 开源项目  | Android Open Source Project (google.cn)</a></p>
+<p>[^4]: <a href="https://stackoverflow.com/questions/60468693/java-outofmemoryerror-when-building-aosp-10">android source - Java OutOfMemoryError when building AOSP 10 - Stack Overflow</a></p>
 ]]></content>
+      <tags>
+        <tag>AOSP</tag>
+        <tag>WSL</tag>
+      </tags>
   </entry>
 </search>
